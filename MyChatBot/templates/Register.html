@@ -1,0 +1,118 @@
+{% load static %}
+<html>
+<head>
+<title>Pregbot Application</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link href="{% static 'default.css' %}" rel="stylesheet" type="text/css" media="screen" />
+ <script LANGUAGE="Javascript" >
+function validate(){
+	var x=document.forms["f1"]["username"].value;
+	var y=document.forms["f1"]["password"].value;
+	var c=document.forms["f1"]["contact"].value;
+	var e=document.forms["f1"]["email"].value;
+	var a=document.forms["f1"]["address"].value;
+	if(x == null || x==""){
+		window.alert("Username must be enter");
+		document.f1.username.focus();
+		return false;
+	}
+	if(y == null || y==""){
+		window.alert("Password must be enter");
+		document.f1.password.focus();
+		return false;
+	}
+	
+	if(c == null || c==""){
+		window.alert("Contact No must be enter");
+		document.f1.contact.focus();
+		return false;
+	}
+	if(isNaN(c)){
+		window.alert("Please enter valid contact number");
+		document.f1.contact.focus();
+		return false;
+	}
+	if(e == null || e==""){
+		window.alert("Email ID must be enter");
+		document.f1.email.focus();
+		return false;
+	}
+	var filter = /^([a-zA-Z0-9_\.\-])+\@(gmail+\.)+(com)+$/;
+	if (!filter.test(e)) {
+		window.alert('enter a valid email address');
+		document.f1.email.focus();
+		return false;
+	}
+	if(a == null || a==""){
+		window.alert("Address must be enter");
+		document.f1.address.focus();
+		return false;
+	}
+	return true;
+}
+		
+	
+	</script>
+</head>
+<body>
+<div id="wrapper">
+  <div id="header">
+    <div id="logo">
+      <h1><font color="orange" size=6>PregBot: A System Based on ML and NLP for Supporting Women and Families during Pregnancy</font></h1>
+	  <marquee><font color="pink" size=4>PREGBOT APPLICATION</font></marquee>
+    </div>
+   
+  
+    </div>
+  </div>
+  <div id="menu">
+     <ul>
+      <li><a href="{% url 'MyChatBot' %}">Home</a></li>
+      <li><a href="{% url 'User' %}">User</a></li>
+      <li><a href="{% url 'Register' %}">Register Here</a></li>
+      
+   </ul>
+  </div>
+  <div class="entry">
+   <br/><br/><br/>
+	<font size="" color="white"><center>{{ data }}</center></font>
+	 <br>
+	 <center><font size="3" color="white">New User Signup Screen</font></center>
+	<form name="f1" method="post" action={% url 'Signup' %} OnSubmit="return validate()">
+	{% csrf_token %}
+	<br><br>
+	<TABLE align=center width="35%" class="notepad">
+		<TR><TH align="left">Username
+		<TD>&nbsp;&nbsp;<Input type=text name="username" autocomplete="off" size="25" value='' class="form-control">
+		<div id='nameid'></div>
+		</TD>
+		</TR>
+		
+		<TR><TH align="left">Password
+		<TD>&nbsp;&nbsp;<Input type='password' size="25" name="password" autocomplete="off" value='' class="form-control">
+		</TR>
+		
+		<TR><TH align="left">Contact No
+		<TD>&nbsp;&nbsp;<Input type='text' size= "25" name="contact" autocomplete="off"  value='' class="form-control" pattern="[6789][0-9]{9}">
+		</TR>
+
+		<TR><TH align="left">Email ID
+		<TD>&nbsp;&nbsp;<Input type='text' size="25" name="email" autocomplete="off"  value='' class="form-control">
+		</TR>
+
+		<TR><TH align="left">Address
+		<TD>&nbsp;&nbsp;<Input type='text' size="25" name="address" autocomplete="off" value='' class="form-control">
+		</TR>
+
+		  <TR>
+				 <TD></TD>
+			<TD>	
+		  <input type="submit" value="Register">
+		 
+		  </TABLE>
+		
+</form>
+</div>
+
+</body>
+</html>

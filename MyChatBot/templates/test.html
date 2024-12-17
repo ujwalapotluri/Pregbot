@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>JavaScript Ajax GET Demo</title>
+<script>
+function displayFullName() {
+    var request = new XMLHttpRequest();
+	var input = document.getElementById("t2").value;
+	var data = ""
+	data = data + document.getElementById("t1").value+"\n"
+	data = data + "You: "+input+"\n"
+	request.open("GET", "http://127.0.0.1:8000/ChatData?mytext="+input);
+	request.onreadystatechange = function() {
+    if(this.readyState === 4 && this.status === 200) {
+	    data = data + "Chatbot: "+this.responseText+"\n"
+		document.getElementById("t1").innerHTML = data;
+        }
+    };
+	request.send();
+}
+</script>
+</head>
+<body>
+    <div id="result">
+        <textarea name="t1" id="t1" rows="20" cols="80"></textarea>
+    </div>
+	<input type="text" name="t2" id="t2" size="60"/>
+    <button type="button" onclick="displayFullName()">Get Answer</button>
+</body>
+</html>

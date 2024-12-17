@@ -1,0 +1,57 @@
+{% load static %}
+<html>
+<head>
+<title>Pregbot Application</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link href="{% static 'default.css' %}" rel="stylesheet" type="text/css" media="screen" />
+</head>
+<body>
+<div id="wrapper">
+  <div id="header">
+    <div id="logo">
+      <h1><font color="orange" size=6>PregBot: A System Based on ML and NLP for Supporting Women and Families during Pregnancy</font></h1>
+	  <marquee><font color="pink" size=4>PREGBOT APPLICATION</font></marquee>
+    </div>
+   
+  
+    </div>
+  </div>
+  <div id="menu">
+    <ul>
+      <li><a href="{% url 'MyChatBot' %}">Home</a></li>
+      <li><a href="{% url 'User' %}">User</a></li>
+      <li><a href="{% url 'Register' %}">Register Here</a></li>
+      
+   </ul>
+  </div>
+  <div id="page">
+   <div id="content">
+      <div class="post">
+        <div class="title">
+          <h2>Pregbot Online</h2>
+         </div>
+        <div class="entry">
+		 <br/><br/><br/>
+{{ data }}
+	 
+	 <br>
+          <p><img src="{% static 'images/p4.jpg' %}" alt="" width="830" height="550" class="left" /><p></p><font size="4" color="white">
+          <center><br/>About Pregbot</center></font></p>
+          <p><font size="" color="white">Pregbot can be described as a web-application that can chat with Pregnancy Women using artificial intelligence. Pregbots
+are generally used to respond quickly to users.</p>
+
+ <p><font size="" color="white">Pregnancy often brings excitement — and lots of questions about what's ahead for you and your baby. Get a basic overview of what happens during each trimester.When you find out that you're pregnant, you might wonder what to expect during each week of your pregnancy. And every day you might have more questions about how to have a healthy pregnancy.
+  Knowing what to expect can help you make good decisions throughout your pregnancy. 
+  <br>Artificial intelligence is transforming healthcare with a profound paradigm shift impacting diagnostic techniques, drug discovery, health analytics, interventions and much more. In this we focus on exploiting AI-based Pregbot systems, mainly based on machine learning algorithms and Natural Language Processing, to understand and respond to needs of patients and their families. In particular, we describe an application scenario for an AI-Pregbot delivering support to pregnant women, mothers, and families with young children, by giving them help and instructions in relevant situations</p>
+          </div>
+        
+      </div>
+     
+       
+       
+    </div>
+    
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,130 @@
+{% load static %}
+<html>
+<head>
+<title>Pregbot Application</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link href="{% static 'default.css' %}" rel="stylesheet" type="text/css" media="screen" />
+<script>
+function displayFullName() {
+    var request = new XMLHttpRequest();
+	var input = document.getElementById("t2").value;
+	var data = ""
+	data = data + document.getElementById("t1").value+"\n"
+	data = data + "You: "+input+"\n"
+	request.open("GET", "http://127.0.0.1:8000/ChatData?mytext="+input);
+	request.onreadystatechange = function() {
+    if(this.readyState === 4 && this.status === 200) {
+	    data = data + "Chatbot: "+this.responseText+"\n"
+		document.getElementById("t1").innerHTML = data;
+		document.getElementById("t2").value = "";
+        }
+    };
+	request.send();
+}
+function clearTextarea() {
+        // Get the textarea element by its id
+        var textarea = document.getElementById("t1");
+
+        // Set the value of the textarea to an empty string
+        textarea.value = "";
+    }
+</script>
+
+
+<style>
+    .container {
+      display: flex;
+      align-items: center;
+    }
+    textarea {
+      width: 600px; /* Adjust the width as needed */
+    }
+  </style>
+
+
+</head>
+<body>
+<div id="wrapper">
+  <div id="header">
+    <div id="logo">
+      <h1><font color="orange" size=6>PregBot: A System Based on ML and NLP for Supporting Women and Families during Pregnancy</font></h1>
+	  <marquee><font color="pink" size=4>PREGBOT APPLICATION</font></marquee>
+    </div>
+   
+  
+    </div>
+  </div>
+  <div id="menu">
+    <ul>
+      <li><a href="{% url 'Logout' %}">Logout</a></li>
+      
+   </ul>
+  </div>
+  <div id="page">
+   <div id="content">
+      <div class="post">
+        <div class="title">
+          <h2>Pregbot Online</h2>
+         </div>
+        <div class="entry">
+		
+            <center><h2>Chat with PregBot</h2></center></font></p>
+          <p><center><img src="{% static 'images/p4_11zon.jpg' %}" alt="Image Description" width="200px" height="300px" class="left" /></center>
+         <p></p><font size="4" color="white">
+          
+          <div id="result">
+        <textarea name="t1" id="t1" rows="15" cols="90"></textarea></center>
+        
+    </div>
+	<input type="text" name="t2" id="t2" size="43"/>
+    <button type="button" onclick="displayFullName()">Get Answer</button>
+    <button onclick="clearTextarea()">Clear Textarea</button>
+    <button id="startbtn">Start Record</button>
+<button id="stopRecording" disabled>Stop Recording</button>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    let recognition;
+
+    const startRecordingButton = document.getElementById('startbtn');
+    const stopRecordingButton = document.getElementById('stopRecording');
+    const outputTextbox = document.getElementById('t2');
+
+    startRecordingButton.addEventListener('click', startRecording);
+    stopRecordingButton.addEventListener('click', stopRecording);
+    function clearText() {
+            // Get the input element by ID
+            var inputElement = document.getElementById('textInput');
+            
+            // Clear the value of the input field
+            inputElement.value = '';
+        }
+
+    function startRecording() {
+        recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        recognition.lang = 'en-US';
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
+
+        recognition.onresult = function (event) {
+            const transcription = event.results[0][0].transcript;
+            outputTextbox.value += `${transcription}\n`;
+        };
+
+        recognition.onend = function () {
+            startRecordingButton.disabled = false;
+            stopRecordingButton.disabled = true;
+        };
+
+        recognition.start();
+        startRecordingButton.disabled = true;
+        stopRecordingButton.disabled = false;
+    }
+
+    function stopRecording() {
+        recognition.stop();
+    }
+});
+</script>
+</script>
+</body>
+</html>
