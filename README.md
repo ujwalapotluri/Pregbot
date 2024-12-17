@@ -26,7 +26,8 @@ open cmd with the location where are files are stored
 run "python manage.py runserver" command.
 ### **Steps-6:**
 Installed packages or libraries needed to run and repeat the steps-4,5,6 untill you get the link. <br>
-
+### **Steps-7:**
+Ping with the link in browser and /index.html at end.<br>
 This are the basic steps needed for this project. <br>
 Here is the outlook of this project<br>
 
